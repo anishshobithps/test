@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { Collection } from '@discordjs/collection';
-import { EventEmitter } from 'events';
+import { EventEmitter } from 'node:events';
 import WebSocket from 'ws';
 import { Pool, Dispatcher } from 'undici';
 
