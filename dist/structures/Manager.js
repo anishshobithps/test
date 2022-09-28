@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Manager = void 0;
 /* eslint-disable no-async-promise-executor */
 const collection_1 = require("@discordjs/collection");
-const events_1 = require("events");
+const node_events_1 = require("node:events");
 const Utils_1 = require("./Utils");
 const REQUIRED_KEYS = ["event", "guildId", "op", "sessionId"];
 function check(options) {
@@ -40,7 +40,7 @@ function check(options) {
  * The main hub for interacting with Lavalink and using Erela.JS,
  * @noInheritDoc
  */
-class Manager extends events_1.EventEmitter {
+class Manager extends node_events_1.EventEmitter {
     static DEFAULT_SOURCES = {
         "youtube music": "ytmsearch",
         "youtube": "ytsearch",
