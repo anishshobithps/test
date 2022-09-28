@@ -54,11 +54,11 @@ jobs:
           git config user.email "${GITHUB_EMAIL}"
           git commit -m "build: tsc build for ${GITHUB_SHA}" || true
           git push origin $TARGET_BRANCH
-      - name: Publish Package
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_AUTH_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTOR: MenuDocs
           GITHUB_EMAIL: ${{ secrets.EMAIL }}
+      - name: Publish Package
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_AUTH_TOKEN }}
