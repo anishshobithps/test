@@ -1,13 +1,8 @@
-name: Publish
-on:
-  release:
-    types: [created]
+name: Release
 
+on: push
 jobs:
-  npm-publish:
-    name: npm publish
-    strategy:
-      fail-fast: false
+  publish:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
@@ -27,6 +22,6 @@ jobs:
       run: yarn build
 
     - name: Publish
-      run: npm publish --access public
-      env:
-        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      uses: JS-DevTools/npm-publish@v1
+      with:
+          token: ${{ secrets.NPM_AUTH_TOKEN }}
