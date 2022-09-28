@@ -12,23 +12,19 @@ jobs:
     steps:
       - name: Checkout Project
         uses: actions/checkout@v2
-
       - name: Use Node.js 12
         uses: actions/setup-node@v1
         with:
           node-version: 16
-
       - name: Restore CI Cache
         uses: actions/cache@v1
         with:
           path: node_modules
           key: ${{ runner.os }}-12-${{ hashFiles('**/yarn.lock') }}
-
       - name: Install Dependencies
         run: yarn --ignore-scripts --frozen-lockfile
       - name: Run CI script
         run:  yarn run ci
-
       - name: Push new code
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
@@ -62,7 +58,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTOR: MenuDocs
           GITHUB_EMAIL: ${{ secrets.EMAIL }}
-
       - name: Publish Package
         uses: JS-DevTools/npm-publish@v1
         with:
