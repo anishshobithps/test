@@ -462,8 +462,8 @@ export class Manager extends EventEmitter {
   public destroyNode(identifier: string): void {
     const node = this.nodes.get(identifier);
     if (!node) return;
-    node.destroy()
-    this.nodes.delete(identifier)
+    node.destroy();
+    this.nodes.delete(identifier);
   }
 
   /**
