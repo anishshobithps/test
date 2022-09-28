@@ -1,0 +1,32 @@
+name: Publish
+on:
+  release:
+    types: [created]
+
+jobs:
+  npm-publish:
+    name: npm publish
+    strategy:
+      fail-fast: false
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+    - uses: actions/checkout@v3
+    
+    - name: Install Node v16
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        registry-url: 'https://registry.npmjs.org'
+        cache: 'yarn'
+
+    - name: Install dependencies
+      run: yarn --immutable
+
+    - name: Build dependencies
+      run: yarn build
+
+    - name: Publish
+      run: npm publish --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
